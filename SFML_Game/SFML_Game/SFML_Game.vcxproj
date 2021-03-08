@@ -148,6 +148,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />

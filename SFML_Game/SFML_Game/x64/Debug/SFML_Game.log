@@ -1,2 +1,7 @@
-﻿  main.cpp
-  SFML_Game.vcxproj -> C:\Users\acer\Desktop\CCompro\SFML_Game\x64\Debug\SFML_Game.exe
+﻿  Background.cpp
+  button.cpp
+  main.cpp
+  sprite.cpp
+  Generating Code...
+sprite.obj : error LNK2005: main already defined in main.obj
+C:\Users\acer\Documents\GitHub\Project2\SFML_Game\x64\Debug\SFML_Game.exe : fatal error LNK1169: one or more multiply defined symbols found

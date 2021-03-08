@@ -28,26 +28,46 @@ int main()
 	sf::Vector2i mousePosWindow;
 	std::map<std::string, Button*> buttons;
 	sf::Font font;
-	font.loadFromFile("Fonts/Pokemon Solid.ttf");
+	font.loadFromFile("./font/TheWildBreathOfZelda-15Lv.ttf");
 	buttons["BTN_1"] = new Button(
-		10.f, 10.f, 200.f, 50.f,
-		&font, "GUI Button 1", 20,
+		10.f, 970.f, 400.f, 100.f,
+		&font, "punch", 30,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(40, 40, 40, 250),
 		sf::Color(20, 20, 20, 50),
-		sf::Color(255, 167, 28, 200),
-		sf::Color(255, 167, 28, 255),
-		sf::Color(255, 167, 28, 200)
+		sf::Color(192, 192, 192, 150),
+		sf::Color(192, 192, 192, 170),
+		sf::Color(192, 192, 192, 200)
 	);
 	buttons["BTN_2"] = new Button(
-		10.f, 70.f, 200.f, 50.f,
-		&font, "GUI Button 2", 20,
+		510.f, 970.f, 400.f, 100.f,
+		&font, "fireball", 30,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(40, 40, 40, 250),
 		sf::Color(20, 20, 20, 50),
-		sf::Color(255, 167, 28, 200),
-		sf::Color(255, 167, 28, 255),
-		sf::Color(255, 167, 28, 200)
+		sf::Color(192, 192, 192, 150),
+		sf::Color(192, 192, 192, 170),
+		sf::Color(192, 192, 192, 200)
+	);
+	buttons["BTN_3"] = new Button(
+		1010.f, 970.f, 400.f, 100.f,
+		&font, "heal", 30,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(40, 40, 40, 250),
+		sf::Color(20, 20, 20, 50),
+		sf::Color(192, 192, 192, 150),
+		sf::Color(192, 192, 192, 170),
+		sf::Color(192, 192, 192, 200)
+	);
+	buttons["BTN_4"] = new Button(
+		1510.f, 970.f, 400.f, 100.f,
+		&font, "smoke bomb", 30,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(40, 40, 40, 250),
+		sf::Color(20, 20, 20, 50),
+		sf::Color(192, 192, 192, 150),
+		sf::Color(192, 192, 192, 170),
+		sf::Color(192, 192, 192, 200)
 	);
 
 	while (window.isOpen())
@@ -81,8 +101,13 @@ int main()
 
 		buttons["BTN_1"]->update(mousePosWindow);
 		buttons["BTN_2"]->update(mousePosWindow);
+		buttons["BTN_3"]->update(mousePosWindow);
+		buttons["BTN_4"]->update(mousePosWindow);
+
 		buttons["BTN_1"]->render(window);
 		buttons["BTN_2"]->render(window);
+		buttons["BTN_3"]->render(window);
+		buttons["BTN_4"]->render(window);
 
 		window.display();
 	}

@@ -20,4 +20,3 @@ private:
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
 
 };
-

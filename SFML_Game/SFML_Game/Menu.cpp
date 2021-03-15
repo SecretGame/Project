@@ -9,22 +9,22 @@ Menu::Menu(float width, float height)
 	}
 
 	menu[0].setFont(font);
-	menu[0].setFillColor(sf::Color(250,0,0));
+	menu[0].setFillColor(sf::Color(250, 0, 0));
 	menu[0].setString("play");
-	menu[0].setPosition(sf::Vector2f(1000,350));
+	menu[0].setPosition(sf::Vector2f(1000, 350));
 	menu[0].setCharacterSize(170);
 
-	menu[1].setFont(font);
-	menu[1].setFillColor(sf::Color(255,255,255));
-	menu[1].setString("options");
-	menu[1].setPosition(sf::Vector2f(1000, 350+200));
-	menu[1].setCharacterSize(150);
+	//menu[1].setFont(font);
+	//menu[1].setFillColor(sf::Color(255, 255, 255));
+	//menu[1].setString("options");
+	//menu[1].setPosition(sf::Vector2f(1000, 350 + 200));
+	//menu[1].setCharacterSize(150);
 
-	menu[2].setFont(font);
-	menu[2].setFillColor(sf::Color(255, 255, 255));
-	menu[2].setString("quit");
-	menu[2].setPosition(sf::Vector2f(1000, 350+400));
-	menu[2].setCharacterSize(150);
+	menu[1].setFont(font);
+	menu[1].setFillColor(sf::Color(255, 255, 255));
+	menu[1].setString("quit");
+	menu[1].setPosition(sf::Vector2f(1000, 350 + 200));
+	menu[1].setCharacterSize(150);
 
 	selectedItemIndex = 0;
 }

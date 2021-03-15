@@ -6,9 +6,15 @@
 
 #include "Button.h"
 #include "Background.h"
+#include "Menu.h"
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Dungeon Tals!", sf::Style::Fullscreen);
+
+	bool playbutton_on = false;
+	bool action_on = false;
+	bool gamestart_on = false;
 
 	sf::Texture bgTexture[4];
 	bgTexture[0].loadFromFile("./background/bg.png");
@@ -70,6 +76,14 @@ int main()
 		sf::Color(192, 192, 192, 200)
 	);
 
+	Menu menu(window.getSize().x, window.getSize().y);
+	sf::Texture bg;
+	if (bg.loadFromFile("./picture/mainn.png"))
+	{
+	}
+	sf::Sprite background(bg);
+
+
 	while (window.isOpen())
 	{
 		deltaTime = clock.restart().asSeconds();
@@ -83,32 +97,67 @@ int main()
 		{
 			switch (event.type)
 			{
+			case sf::Event::KeyReleased:
+				switch (event.key.code)
+				{
+				case sf::Keyboard::Up:
+					menu.MoveUp();
+					break;
+
+				case sf::Keyboard::Down:
+					menu.MoveDown();
+					break;
+
+				case sf::Keyboard::Return:
+					switch (menu.GetPressedItem())
+					{
+					case 0:
+						playbutton_on = true;
+						break;
+					case 1:
+						window.close();
+						break;
+					}
+
+					break;
+				}
+
+				break;
 			case sf::Event::Closed:
 				window.close();
 				break;
 			}
 		}
 
-		for (Background& background : backgrounds)
-			background.Update(deltaTime);
+			for (Background& background : backgrounds)
+				if (action_on == false && gamestart_on == true) {
+				background.Update(deltaTime);
+				}
 
 		window.clear();
 
-		for (Background& background : backgrounds)
-			background.Draw(window);
+		if (playbutton_on == false) {
+			window.draw(background);
+			menu.draw(window);
+		}
+		else {
+				for (Background& background : backgrounds)
+					background.Draw(window);
 
-		mousePosWindow = sf::Mouse::getPosition(window);
+			mousePosWindow = sf::Mouse::getPosition(window);
+			if (action_on == false) {
+				buttons["BTN_1"]->update(mousePosWindow);
+				buttons["BTN_2"]->update(mousePosWindow);
+				buttons["BTN_3"]->update(mousePosWindow);
+				buttons["BTN_4"]->update(mousePosWindow);
 
-		buttons["BTN_1"]->update(mousePosWindow);
-		buttons["BTN_2"]->update(mousePosWindow);
-		buttons["BTN_3"]->update(mousePosWindow);
-		buttons["BTN_4"]->update(mousePosWindow);
-
-		buttons["BTN_1"]->render(window);
-		buttons["BTN_2"]->render(window);
-		buttons["BTN_3"]->render(window);
-		buttons["BTN_4"]->render(window);
-
+				buttons["BTN_1"]->render(window);
+				buttons["BTN_2"]->render(window);
+				buttons["BTN_3"]->render(window);
+				buttons["BTN_4"]->render(window);
+			}
+		}
+	
 		window.display();
 	}
 	return 0;

@@ -33,20 +33,63 @@ Button::Button(float x, float y, float width, float height, sf::Font* font, std:
     this->outlineHoverColor = outline_hover_color;
     this->outlineActiveColor = outline_active_color;
 }
+
+// Pressed
+const bool Button::MousePress() const
+{
+    if (this->buttonState == button_states::BTN_ACTIVE)
+        return true;
+
+    return false;
+}
+
+const bool Button::IsMousePress() const
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        return true;
+    }
+    else return false;
+}
+
+const bool Button::IsMouseRelease() const
+{
+    if (!(sf::Mouse::isButtonPressed(sf::Mouse::Left)))
+    {
+        return true;
+    }
+    else return false;
+}
+
 void Button::update(const sf::Vector2i& mousePosWindow)
 {
     //Idle
-    this->buttonState = BTN_IDLE;
+    this->buttonState = button_states::BTN_IDLE;
+
     //Hover
     if (this->shape.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosWindow)))
     {
         this->buttonState = BTN_HOVER;
-        // Pressed
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+
+        if (this->IsMousePress())
         {
-            this->buttonState = BTN_ACTIVE;
+            MousePressCheck[0] = true;
+            MousePressCheck[1] = false;
+        }
+        if (this->IsMousePress())MousePressCheck[1] = true;
+
+        if (MousePressCheck[0] and MousePressCheck[1])
+        {
+            this->buttonState = button_states::BTN_ACTIVE;
+            MousePressCheck[0] = false;
+            MousePressCheck[1] = false;
         }
     }
+    else {
+        MousePressCheck[0] = false;
+        MousePressCheck[1] = false;
+    }
+
     switch (this->buttonState)
     {
     case BTN_IDLE:

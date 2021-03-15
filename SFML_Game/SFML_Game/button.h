@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <map>
 enum button_states { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
 class Button
 {
@@ -22,5 +24,9 @@ public:
     //¿Ñ§¡ìªÑ¹
     void update(const sf::Vector2i& mousePosWindow);
     void render(sf::RenderTarget& target);
+    bool MousePressCheck[3] = { false,false,false };
+    const bool IsMouseRelease() const;
+    const bool IsMousePress() const;
+    const bool MousePress() const;
 };
 
